@@ -18,5 +18,6 @@
   "comment_many": "Комментариев",
   "noData": "Нет данных",
   "anonymous": "Аноним",
-  "serverError": "Ошибка сервера"
+  "serverError": "Ошибка сервера",
+  "newsPerPage": "Новостей на странице"
 }

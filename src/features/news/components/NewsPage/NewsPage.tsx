@@ -41,6 +41,7 @@ export const NewsPage = () => {
 					</RefreshButton>
 				</Header>
 				<Table<Story>
+					labelRowsPerPage={t('newsPerPage')}
 					defaultSort={DEFAULT_SORT}
 					isLoading={isLoading}
 					onRowClick={handleRowClick}

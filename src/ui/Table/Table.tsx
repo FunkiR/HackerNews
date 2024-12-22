@@ -25,6 +25,7 @@ export const Table = <T extends Row = Row>({
 	className,
 	columns,
 	onRowClick,
+	labelRowsPerPage,
 	isLoading
 }: Props<T>) => {
 	const {t} = useTranslation();
@@ -38,17 +39,20 @@ export const Table = <T extends Row = Row>({
 		getSortedRowModel: getSortedRowModel(),
 		debugTable: process.env.NODE_ENV === 'development',
 		onSortingChange: setSorting,
+		initialState: {
+			pagination: {
+				pageSize: 25
+			}
+		},
 		state: {
 			sorting
 		}
 	});
 	const {pageSize, pageIndex} = table.getState().pagination;
 
-	const perPageOptions = useMemo(() => [5, 10, 25, 50, 100], []);
+	const perPageOptions = useMemo(() => [10, 25, 50, 100], []);
 
-	const handlePageChange = useCallback((_, page) => {
-		table.setPageIndex(page);
-	}, []);
+	const handlePageChange = useCallback((_, page) => table.setPageIndex(page), []);
 
 	const handlePerPageChange = useCallback((e) => {
 		const size = e.target.value ? Number(e.target.value) : 10;
@@ -101,7 +105,7 @@ export const Table = <T extends Row = Row>({
 				</MuiTable>
 			</TableContainer>
 			<TablePagination
-				labelRowsPerPage={t('rowPerPage')}
+				labelRowsPerPage={labelRowsPerPage ?? t('rowPerPage')}
 				labelDisplayedRows={labelDisplayedRows}
 				rowsPerPageOptions={perPageOptions}
 				component="div"

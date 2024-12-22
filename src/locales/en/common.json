@@ -18,5 +18,6 @@
     "comment_many": "Comments",
     "noData": "No data",
     "anonymous": "Anonymous",
-    "serverError": "Server Error"
+    "serverError": "Server Error",
+    "newsPerPage": "News per page"
 }
