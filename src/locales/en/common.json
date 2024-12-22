@@ -1,0 +1,22 @@
+{
+    "somethingWrong": "Something went wrong...",
+    "all": "All",
+    "name": "Title",
+    "score": "Score",
+    "author": "Author",
+    "date": "Date",
+    "refresh": "Refresh",
+    "rowPerPage": "Rows per page",
+    "of": "of",
+    "backToList": "Back to list",
+    "answer_one": "Answer",
+    "answer_few": "Answers",
+    "answer_many": "Answers",
+    "comments_count": "Number of comments",
+    "comment_one": "Comment",
+    "comment_few": "Comments",
+    "comment_many": "Comments",
+    "noData": "No data",
+    "anonymous": "Anonymous",
+    "serverError": "Server Error"
+}

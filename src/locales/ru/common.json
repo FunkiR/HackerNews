@@ -1,0 +1,22 @@
+{
+  "somethingWrong": "Что-то пошло не так...",
+  "all": "Все",
+  "name": "Название",
+  "score": "Рейтинг",
+  "author": "Автор",
+  "date": "Дата",
+  "refresh": "Обновить",
+  "rowPerPage": "Строк на странице",
+  "of": "из",
+  "backToList": "Вернуться к списку",
+  "answer_one": "Ответ",
+  "answer_few": "Ответа",
+  "answer_many": "Ответов",
+  "comments_count": "Кол-во комментариев",
+  "comment_one": "Комментарий",
+  "comment_few": "Комментария",
+  "comment_many": "Комментариев",
+  "noData": "Нет данных",
+  "anonymous": "Аноним",
+  "serverError": "Ошибка сервера"
+}
