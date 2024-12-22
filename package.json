@@ -87,7 +87,7 @@
   },
   "msw": {
     "workerDirectory": [
-      "src/msv"
+      "src/msw"
     ]
   }
 }
