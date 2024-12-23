@@ -1,4 +1,4 @@
-import {AlertState} from '~/c/features/alerts/store/types';
+import {AlertState} from '~/features/alerts/store/types';
 
 export type ModalProps = {
 	data: AlertState;

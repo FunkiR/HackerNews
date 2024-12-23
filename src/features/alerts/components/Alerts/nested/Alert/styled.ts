@@ -1,6 +1,6 @@
 import {keyframes} from '@emotion/react';
 import {Alert as MuiAlert, styled} from '@mui/material';
-import {AlertType} from '~/c/features/alerts/store';
+import {AlertType} from '~/features/alerts/store';
 
 const changeBorders = (color: string) => keyframes`
   0% {

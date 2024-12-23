@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"checkJs": true,
+		"checkJs": false,
 		"allowSyntheticDefaultImports": true,
 		"declaration": true,
 		"lib": [

@@ -6,7 +6,7 @@ import {ModalProps} from './types';
 export const Alert: FC<ModalProps> = ({data, onClose}) => {
 	const {data: alert, id} = data;
 	const {text, time = 3000, title, type} = alert;
-	const timeoutIdRef = useRef<NodeJS.Timeout>();
+	const timeoutIdRef = useRef<NodeJS.Timeout>(undefined);
 
 	useEffect(() => {
 		timeoutIdRef.current = setTimeout(() => onClose(id), time);

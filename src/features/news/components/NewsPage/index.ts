@@ -1,1 +1,1 @@
-export {default} from './NewsPage.tsx';
+export {default} from './NewsPage';
