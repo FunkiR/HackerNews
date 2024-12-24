@@ -18,13 +18,13 @@ describe(`тестирование компонента ${CommentContent.name}`,
 	test('onLoad вызывается только в случае, когда данные еще не загружены', () => {
 		const onLoadMock = jest.fn();
 
-		const {getByTestId, rerender} = render(<CommentContent {...defaultProps} onLoad={onLoadMock} isLoaded={false} />);
+		const {getByTestId, rerender} = render(<CommentContent {...defaultProps} isLoaded={false} onLoad={onLoadMock} />);
 
 		fireEvent.click(getByTestId('answerButton'));
 
 		expect(onLoadMock).toHaveBeenCalledTimes(1);
 
-		rerender(<CommentContent {...defaultProps} onLoad={onLoadMock} isLoaded={true} />);
+		rerender(<CommentContent {...defaultProps} isLoaded={true} onLoad={onLoadMock} />);
 
 		fireEvent.click(getByTestId('answerButton'));
 
@@ -35,16 +35,16 @@ describe(`тестирование компонента ${CommentContent.name}`,
 		const mockFn = jest.fn();
 
 		const {getByTestId, queryByTestId, rerender} = render(
-			<CommentContent {...defaultProps} onClickRefresh={mockFn} isLoaded={false} />
+			<CommentContent {...defaultProps} isLoaded={false} onClickRefresh={mockFn} />
 		);
 
 		expect(queryByTestId('refreshButton')).toEqual(null);
 
-		rerender(<CommentContent {...defaultProps} onClickRefresh={mockFn} isLoaded={true} isLoading={true} />);
+		rerender(<CommentContent {...defaultProps} isLoaded={true} isLoading={true} onClickRefresh={mockFn} />);
 
 		expect(queryByTestId('refreshButton')).toEqual(null);
 
-		rerender(<CommentContent {...defaultProps} onClickRefresh={mockFn} isLoaded={true} isLoading={false} />);
+		rerender(<CommentContent {...defaultProps} isLoaded={true} isLoading={false} onClickRefresh={mockFn} />);
 
 		fireEvent.click(getByTestId('refreshButton'));
 

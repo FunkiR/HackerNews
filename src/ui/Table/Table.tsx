@@ -15,18 +15,18 @@ import {
 	flexRender,
 	SortingState
 } from '@tanstack/react-table';
-import {Props, Row} from './types';
 import {useTranslation} from 'react-i18next';
+import {Props, Row} from './types';
 import {TableBox, TableRow, ProgressBox, NoDataCell, TableContainer} from './styled';
 
 export const Table = <T extends Row = Row>({
-	data,
-	defaultSort,
 	className,
 	columns,
-	onRowClick,
+	data,
+	defaultSort,
+	isLoading,
 	labelRowsPerPage,
-	isLoading
+	onRowClick
 }: Props<T>) => {
 	const {t} = useTranslation();
 	const [sorting, setSorting] = useState<SortingState>(defaultSort ?? []);
@@ -48,7 +48,7 @@ export const Table = <T extends Row = Row>({
 			sorting
 		}
 	});
-	const {pageSize, pageIndex} = table.getState().pagination;
+	const {pageIndex, pageSize} = table.getState().pagination;
 
 	const perPageOptions = useMemo(() => [10, 25, 50, 100], []);
 
@@ -59,7 +59,7 @@ export const Table = <T extends Row = Row>({
 		table.setPageSize(size);
 	}, []);
 
-	const labelDisplayedRows = useCallback(({from, to, count}) => `${from}-${to} ${t('of')} ${count}`, []);
+	const labelDisplayedRows = useCallback(({count, from, to}) => `${from}-${to} ${t('of')} ${count}`, []);
 
 	return (
 		<TableBox className={className}>
@@ -90,7 +90,7 @@ export const Table = <T extends Row = Row>({
 					<TableBody>
 						{table.getRowModel().rows.length ? (
 							table.getRowModel().rows.map((row) => (
-								<TableRow data-testid="dataRow" key={row.id} onClick={() => onRowClick?.(row.original)} hover>
+								<TableRow key={row.id} data-testid="dataRow" hover onClick={() => onRowClick?.(row.original)}>
 									{row.getVisibleCells().map((cell) => (
 										<TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
 									))}
@@ -105,15 +105,15 @@ export const Table = <T extends Row = Row>({
 				</MuiTable>
 			</TableContainer>
 			<TablePagination
-				labelRowsPerPage={labelRowsPerPage ?? t('rowPerPage')}
-				labelDisplayedRows={labelDisplayedRows}
-				rowsPerPageOptions={perPageOptions}
 				component="div"
 				count={table.getFilteredRowModel().rows.length}
-				rowsPerPage={pageSize}
-				page={pageIndex}
+				labelDisplayedRows={labelDisplayedRows}
+				labelRowsPerPage={labelRowsPerPage ?? t('rowPerPage')}
 				onPageChange={handlePageChange}
 				onRowsPerPageChange={handlePerPageChange}
+				page={pageIndex}
+				rowsPerPage={pageSize}
+				rowsPerPageOptions={perPageOptions}
 			/>
 		</TableBox>
 	);

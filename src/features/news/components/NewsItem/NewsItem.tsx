@@ -1,18 +1,18 @@
 import {Container, CircularProgress, Link, IconButton, Typography, Box} from '@mui/material';
-import {Page, Title, Info, TreeView, CommentsHeader} from './styled';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import {getFormattedDate} from '~/features/news/utils';
 import Comment from '~/features/news/components/Comment';
-import {Props} from './types';
 import {newsApi} from '~/features/news/store';
 import {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import SkeletonComment from '~/features/news/components/SkeletonComment';
 import {memo} from 'react';
+import {Props} from './types';
+import {Page, Title, Info, TreeView, CommentsHeader} from './styled';
 
 export const NewsItem = ({newsItem}: Props) => {
-	const {title, url, time, kids, by} = newsItem;
+	const {by, kids, time, title, url} = newsItem;
 	const {t} = useTranslation();
 	const [getComments, {data: comments, isFetching}] = newsApi.useLazyGetCommentsQuery();
 	const commentsCount = kids?.length ?? 0;
@@ -43,7 +43,7 @@ export const NewsItem = ({newsItem}: Props) => {
 							{isFetching ? (
 								<CircularProgress size={15} />
 							) : (
-								<IconButton size="small" color="primary" onClick={() => getComments(kids)}>
+								<IconButton color="primary" onClick={() => getComments(kids)} size="small">
 									<RefreshIcon />
 								</IconButton>
 							)}
@@ -52,7 +52,7 @@ export const NewsItem = ({newsItem}: Props) => {
 					{comments?.length && !isFetching ? (
 						<TreeView sx={{mt: 1}}>
 							{comments.map((comment) => (
-								<Comment data={comment} key={comment.id} />
+								<Comment key={comment.id} data={comment} />
 							))}
 						</TreeView>
 					) : (

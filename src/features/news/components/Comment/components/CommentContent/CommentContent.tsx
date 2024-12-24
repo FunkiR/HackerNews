@@ -1,24 +1,24 @@
 import parse from 'html-react-parser';
-import {Props} from './types';
 import {memo, MouseEvent} from 'react';
 import {Box, CircularProgress} from '@mui/material';
-import {Header, AnswerButton, Text, RefreshCommentsButton} from './styled';
 import {getFormattedDate} from '~/features/news/utils';
 import {useTranslation} from 'react-i18next';
 import RefreshIcon from '@mui/icons-material/Refresh';
+import {Header, AnswerButton, Text, RefreshCommentsButton} from './styled';
+import {Props} from './types';
 
 export const CommentContent = ({
-	comment,
 	className,
-	onClick,
-	onLoad,
-	onMouseDown,
-	isLoading,
+	comment,
 	isLoaded,
-	onClickRefresh
+	isLoading,
+	onClick,
+	onClickRefresh,
+	onLoad,
+	onMouseDown
 }: Props) => {
 	const {t} = useTranslation();
-	const {text, time, by, kids} = comment;
+	const {by, kids, text, time} = comment;
 	const answersCount = kids?.length ?? 0;
 
 	const handleClick = (e: MouseEvent<HTMLElement>) => {
@@ -31,19 +31,19 @@ export const CommentContent = ({
 		<Box className={className} mt={1}>
 			<Header>{`${by ?? t('anonymous')} (${getFormattedDate(time)})`}</Header>
 			{text && <Text mt={0.5}>{parse(text)}</Text>}
-			<Box mt={0.5} display="flex" alignItems="center" height={30}>
+			<Box alignItems="center" display="flex" height={30} mt={0.5}>
 				<AnswerButton
 					data-testid="answerButton"
-					onMouseDown={onMouseDown}
 					onClick={handleClick}
+					onMouseDown={onMouseDown}
 				>{`${answersCount} ${t('answer', {count: answersCount})}`}</AnswerButton>
-				{isLoading && <CircularProgress sx={{ml: 1}} size={10} />}
+				{isLoading && <CircularProgress size={10} sx={{ml: 1}} />}
 				{isLoaded && !isLoading && (
 					<RefreshCommentsButton
-						data-testid="refreshButton"
 						color="primary"
-						onClick={onClickRefresh}
+						data-testid="refreshButton"
 						disabled={isLoading}
+						onClick={onClickRefresh}
 					>
 						<RefreshIcon />
 					</RefreshCommentsButton>

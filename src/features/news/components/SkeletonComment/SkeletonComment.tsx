@@ -4,7 +4,7 @@ import {memo} from 'react';
 export const SkeletonComment = () => (
 	<Box mt={1}>
 		<Skeleton variant="text" />
-		<Skeleton variant="rounded" height={60} />
+		<Skeleton height={60} variant="rounded" />
 	</Box>
 );
 

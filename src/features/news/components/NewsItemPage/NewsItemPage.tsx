@@ -15,7 +15,7 @@ export const NewsItemPage = () => {
 
 	return (
 		<>
-			<Fab size="small" onClick={() => navigate(PAGES.news)} color="primary" title={t('backToList')}>
+			<Fab color="primary" onClick={() => navigate(PAGES.news)} size="small" title={t('backToList')}>
 				<ArrowBackIcon />
 			</Fab>
 			<Backdrop open={isFetching}>

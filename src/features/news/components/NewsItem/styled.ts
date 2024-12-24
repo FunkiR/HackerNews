@@ -1,4 +1,4 @@
-import {styled, Paper, Typography, Box, IconButton} from '@mui/material';
+import {styled, Paper, Typography, Box} from '@mui/material';
 import {SimpleTreeView} from '@mui/x-tree-view/SimpleTreeView';
 
 export const Page = styled(Paper)`

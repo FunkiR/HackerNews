@@ -29,7 +29,7 @@ describe(`тестирование компонента ${Table.name}`, () => {
 			{test1: 'text2', test2: 'text2'}
 		];
 		const columns = [{accessorKey: 'test1'}, {accessorKey: 'test2'}];
-		const {getAllByTestId} = render(<Table data={data} columns={columns} onRowClick={fn} />);
+		const {getAllByTestId} = render(<Table columns={columns} data={data} onRowClick={fn} />);
 
 		fireEvent.click(getAllByTestId('dataRow')[1]);
 

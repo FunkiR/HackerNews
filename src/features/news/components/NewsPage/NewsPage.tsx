@@ -1,13 +1,13 @@
 import {useCallback, useMemo} from 'react';
 import {newsApi, Story} from '~/features/news/store';
-import {COLUMNS, REFETCH_TIME, DEFAULT_SORT} from './constants';
 import {useNavigate} from 'react-router';
 import PAGES from '~/constants/pages';
 import Typography from '@mui/material/Typography';
 import {useTranslation} from 'react-i18next';
-import {Header, Page, RefreshButton, Table} from './styled';
 import Container from '@mui/material/Container';
 import {CONFIG} from '~/constants';
+import {Header, Page, RefreshButton, Table} from './styled';
+import {COLUMNS, REFETCH_TIME, DEFAULT_SORT} from './constants';
 
 export const NewsPage = () => {
 	const {
@@ -36,17 +36,17 @@ export const NewsPage = () => {
 			<Page>
 				<Header>
 					<Typography variant="h4">Hacker News</Typography>
-					<RefreshButton disabled={isLoading} onClick={handleClickRefetchButton} variant="contained" fullWidth={false}>
+					<RefreshButton disabled={isLoading} fullWidth={false} onClick={handleClickRefetchButton} variant="contained">
 						{t('refresh')}
 					</RefreshButton>
 				</Header>
 				<Table<Story>
-					labelRowsPerPage={t('newsPerPage')}
-					defaultSort={DEFAULT_SORT}
-					isLoading={isLoading}
-					onRowClick={handleRowClick}
 					columns={COLUMNS}
 					data={news}
+					defaultSort={DEFAULT_SORT}
+					isLoading={isLoading}
+					labelRowsPerPage={t('newsPerPage')}
+					onRowClick={handleRowClick}
 				/>
 			</Page>
 		</Container>
